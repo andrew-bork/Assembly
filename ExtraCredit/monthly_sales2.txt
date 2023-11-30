@@ -1,0 +1,12 @@
+jul	9762
+dec	2457
+may	2429
+apr	3463
+nov	88
+oct	6735
+mar	1073
+jan	14317
+feb	4176
+sep	2437
+aug	15578
+jun	4324
