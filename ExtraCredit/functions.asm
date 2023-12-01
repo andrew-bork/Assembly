@@ -1,3 +1,8 @@
+; Program: Extra Credit Project
+; Author: Andrew Lin
+; CMPE 102
+; 12/10/23
+; Contains functions: show, max, min, view, edit, and total. Each function is called from main.c.
 
 
 include <Irvine32.inc>
@@ -10,7 +15,7 @@ SalesRecord struct
     amount dword 0
 SalesRecord ends
 
-
+; void save();
 save proto near c, records:dword
 
 .data
@@ -22,10 +27,11 @@ save proto near c, records:dword
     salesAmountPrefix byte "The sales amount: $", 0
 
     amountPrompt byte "Amount: ",0
-    amountUpdateMsg byte "New amount updated", 13, 0
+    amountUpdateMsg byte "New amount updated", 10, 0
 
 .code
 
+; Show all monthly records
 show proc c, records:dword
     mov esi, records
     mov ecx, MONTHS
@@ -51,6 +57,7 @@ show proc c, records:dword
     ret
 show endp
 
+; Find the maxmimum monthly sales record
 max proc c, records:dword
     mov esi, records
     mov eax, 80000000h ; smallest negative number
@@ -75,6 +82,7 @@ max proc c, records:dword
     ret
 max endp
 
+; Find the minimum monthly sales record
 min proc c, records:dword
     mov esi, records
     mov eax, 7fffffffh ; Largest positive number
@@ -99,6 +107,7 @@ min proc c, records:dword
     ret
 min endp
 
+; View a single month's sales record
 view proc c, records:dword
     sub esp, MONTH_SIZE ; Allocate buffer for user input
 
@@ -140,6 +149,7 @@ view proc c, records:dword
     ret
 view endp
 
+; Edit a single month's sales record and save back to file
 edit proc c, records:dword
     sub esp, MONTH_SIZE ; Allocate buffer for user input
 
@@ -187,6 +197,7 @@ edit proc c, records:dword
     ret
 edit endp
 
+; Calculate total amount from sales
 total proc c, records:dword
     mov esi, records
     mov eax, 0

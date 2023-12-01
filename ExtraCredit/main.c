@@ -1,20 +1,39 @@
+/**
+* Program: Extra Credit Project
+* Author: Andrew Lin
+* CMPE 102
+* 12/10/23
+* Write a program that allows the user to manage the sales amounts of the current year.
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
-#include "main.h"
 #include <string.h>
 
+#include "main.h"
 
 
+/**
+ * @brief Print the program title
+*/
 void print_title() {
     printf("Product Sales Management System\n\n");
 }
 
+/**
+ * @brief Print command options
+*/
 void print_menu() {
     printf("show - Display all sales records\nview - View an amount of a specified month\nmax - View the highest sales amount\nmin - View the lowest sales amount\nedit - Edit an amount of a specified month\ntotal - Get the total of all sales\nquit - Terminate the program\n\n");
 }
 
 
-
+/**
+ * @brief Read monthly sales file.
+ * @param filename Name of monthly sales file
+ * @param records 
+*/
 void read_file(const char* filename, struct salesRecord* records) {
     FILE* file = fopen(filename, "r");
     if (file == NULL) {
@@ -29,7 +48,11 @@ void read_file(const char* filename, struct salesRecord* records) {
     fclose(file);
 }
 
-
+/**
+ * @brief Write monthly sales file.
+ * @param filename Name of monthly sales file
+ * @param records 
+*/
 void write_file(const char* filename, struct salesRecord* records) {
     FILE* file = fopen(filename, "w");
     if (file == NULL) {
@@ -44,6 +67,10 @@ void write_file(const char* filename, struct salesRecord* records) {
     fclose(file);
 }
 
+/**
+ * @brief Save monthly sales file to MONTHLY_SALES_TXT
+ * @param records 
+*/
 void save(struct salesRecord* records) {
     write_file(MONTHLY_SALES_TXT, records);
 }
@@ -56,7 +83,6 @@ int main(void) {
     struct salesRecord records[12];
 
     read_file(MONTHLY_SALES_TXT, records);
-    show(records);
     
     print_menu();
     int should_exit = 0;
@@ -65,15 +91,19 @@ int main(void) {
          int is_valid_command = 1;
          do {
              is_valid_command = 1;
+
+             // Get use input
              printf("\nCommand: ");
              char user_option[16];
              char* success = fgets(user_option, sizeof(user_option), stdin); // Warning: fgets includes the '\n' character.
 
+             // Handle error on stdin
              if (success == NULL) {
                  printf("Failed to read from stdin.\n");
                  continue;
              }
-
+             
+             // Check and run appropriate command.
              if (strcmp(user_option, "show\n") == 0) {
                  show(records);
              }
