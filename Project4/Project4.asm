@@ -1,12 +1,10 @@
-; Program: Project #3
+; Program: Project #4
 ; Author: Andrew Lin
 ; CMPE 102
-; 11/11/23
-; Write a program that controls the laser system at a medical devices company.
-; The program includes a main procedure which gets user inputs and uses the
-; input values for the OK button press, CANCEL button press, the SET button press,
-; the CLEAR button press, and other functionalities on the touch screen.
-
+; 12/10/23
+; Write the program that displays stack addresses and 32-bit values which are pushed on the stack when the 
+; procedures are called. The contents must be displayed in order from the lowest address to the highest address. The
+; program should generate the similar output shown below.
 
 .386
 .model flat,stdcall
@@ -44,6 +42,7 @@ endm
 	num5 dword 5h
 .code
 
+; Show stack parameters
 runLevelTwo proc
 	push ebp
 	mov ebp, esp
@@ -52,7 +51,8 @@ runLevelTwo proc
 	displayString "------------------------------------------", 1
 
 	mov ecx, [ebp + 8] ; number of stack addresses to print
-	lea esi, [ebp + 12] ; ebp + ret addr + 1 parameter -> 12
+	mov esi, [ebp] ; get base pointer of last stack frame
+	lea esi, [esi+8] ; get first parameter of last stack frame
 
 	l1: 
 		displayString "Address: ", 0
@@ -63,7 +63,7 @@ runLevelTwo proc
 		call WriteHex
 		displayString "h", 1
 
-		add esi, 4
+		add esi, 4 ; Advance to next parameter
 		loop l1
 		
 	displayString "------------------------------------------", 1
@@ -76,6 +76,17 @@ runLevelOne proc
 	push ebp
 	mov ebp, esp
 
+	mov eax, 5
+	push eax
+	call runLevelTwo
+	
+	pop ebp
+
+	ret 20; 5 * 4
+runLevelOne endp
+
+main proc
+
 	mov eax, num5
 	push eax
 	mov eax, num4
@@ -87,17 +98,6 @@ runLevelOne proc
 	mov eax, num1
 	push eax
 
-	mov eax, 5
-	push eax
-	call runLevelTwo
-	
-	add esp, 20 ; 5 * 4
-	pop ebp
-
-	ret ; no parameters
-runLevelOne endp
-
-main proc
 	call runLevelOne
 	invoke ExitProcess, 0
 main endp
