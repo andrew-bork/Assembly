@@ -9,6 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project2", "Project2\Projec
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RandomStuff", "RandomStuff\RandomStuff.vcxproj", "{F5BE0640-255B-40E3-89E8-0D23380384D8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExtraCredit", "ExtraCredit\ExtraCredit.vcxproj", "{48C9BA88-FE68-4054-AA1E-E3CBA83C4A0E}"
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project3", "Project3\Project3.vcxproj", "{4DCC5EBC-5356-4AA2-A80D-EBED29E7DCC8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExtraCredit", "ExtraCredit\ExtraCredit.vcxproj", "{48C9BA88-FE68-4054-AA1E-E3CBA83C4A0E}"
