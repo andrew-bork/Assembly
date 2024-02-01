@@ -5,10 +5,6 @@ This project is using x86 Windows MASM.
 
 ## Random stuff
 These are just random off projects seeing what I can do in assembly.
-Currently working on:
-  - Console I/O (puts, printf ...)
-  - String Operations (strncpy, concat ...)
-  - String Conversions (itoa, ftoa ...)
-
-## Project 1
-
+Things:
+  - Console I/O
+  - itoa
